@@ -394,6 +394,21 @@ def harmonize_variables(df: pd.DataFrame) -> pd.DataFrame:
     ).astype(float)
     df.loc[df[['hba1c', 'fasting_glucose', 'DIQ010']].isna().all(axis=1), 'diabetes'] = np.nan
     
+    # Prediabetes: HbA1c 5.7-6.4% OR FPG 100-125 mg/dL (excluding those with diabetes)
+    df['prediabetes'] = (
+        ((df['hba1c'] >= 5.7) & (df['hba1c'] < 6.5)) |
+        ((df['fasting_glucose'] >= 100) & (df['fasting_glucose'] < 126))
+    ).astype(float)
+    # Exclude those already classified as diabetic
+    df.loc[df['diabetes'] == 1, 'prediabetes'] = 0
+    df.loc[df[['hba1c', 'fasting_glucose']].isna().all(axis=1), 'prediabetes'] = np.nan
+    
+    # Combined glycemic status: 0=Normal, 1=Prediabetes, 2=Diabetes
+    df['glycemic_status'] = 0
+    df.loc[df['prediabetes'] == 1, 'glycemic_status'] = 1
+    df.loc[df['diabetes'] == 1, 'glycemic_status'] = 2
+    df.loc[df[['diabetes', 'prediabetes']].isna().all(axis=1), 'glycemic_status'] = np.nan
+    
     # Hypertension: SBP ≥130 OR DBP ≥80 OR taking BP medication
     df['hypertension'] = (
         (df['sbp_mean'] >= 130) |
@@ -499,6 +514,43 @@ def create_rir_cohort(df: pd.DataFrame) -> pd.DataFrame:
                        (df['hscrp_high'] == 1)).astype(int)
     
     # -------------------------------------------------------------------------
+    # PI-requested 6-group LDL × Statin stratification
+    # -------------------------------------------------------------------------
+    # LDL-C categories: ≤70, 70-130, >130
+    def ldl_category(ldl):
+        if pd.isna(ldl):
+            return np.nan
+        elif ldl <= 70:
+            return 1  # ≤70
+        elif ldl <= 130:
+            return 2  # 70-130
+        else:
+            return 3  # >130
+    
+    df['ldl_cat'] = df['ldl_calc'].apply(ldl_category)
+    
+    # 6-group variable: LDL category × Statin status
+    # 1 = LDL≤70, statin user
+    # 2 = LDL≤70, no statin
+    # 3 = LDL 70-130, statin user
+    # 4 = LDL 70-130, no statin
+    # 5 = LDL >130, statin user
+    # 6 = LDL >130, no statin
+    def ldl_statin_group(row):
+        if pd.isna(row['ldl_cat']) or pd.isna(row['statin_user']):
+            return np.nan
+        ldl_c = int(row['ldl_cat'])
+        statin = int(row['statin_user'])
+        if ldl_c == 1:  # ≤70
+            return 1 if statin == 1 else 2
+        elif ldl_c == 2:  # 70-130
+            return 3 if statin == 1 else 4
+        else:  # >130
+            return 5 if statin == 1 else 6
+    
+    df['ldl_statin_group'] = df.apply(ldl_statin_group, axis=1)
+    
+    # -------------------------------------------------------------------------
     # Summary statistics
     # -------------------------------------------------------------------------
     print(f"\n  Final cohort: {len(df):,}")
@@ -555,12 +607,15 @@ def main():
         'hba1c', 'fasting_glucose', 'sbp_mean', 'dbp_mean', 'bmi',
         
         # Clinical conditions
-        'statin_user', 'diabetes', 'hypertension', 'current_smoker', 
-        'smoking_status', 'obese',
+        'statin_user', 'diabetes', 'prediabetes', 'glycemic_status',
+        'hypertension', 'current_smoker', 'smoking_status', 'obese',
         
         # RIR variables
         'ldl_under_70', 'ldl_under_55', 'hscrp_high', 'hscrp_very_high',
         'rir', 'rir_strict', 'rir_ldl55',
+        
+        # LDL × Statin stratification (PI request)
+        'ldl_cat', 'ldl_statin_group',
     ]
     
     df_final = df[[c for c in analysis_vars if c in df.columns]].copy()

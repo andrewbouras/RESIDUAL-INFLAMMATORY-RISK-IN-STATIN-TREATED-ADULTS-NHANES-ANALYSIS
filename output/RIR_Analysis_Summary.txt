@@ -1,6 +1,6 @@
 RESIDUAL INFLAMMATORY RISK IN STATIN-TREATED ADULTS: NHANES ANALYSIS
 
-Preliminary Results Summary
+Preliminary Results Summary (Updated)
 December 2024
 
 
@@ -8,91 +8,192 @@ OVERVIEW
 
 This analysis estimates the prevalence of residual inflammatory risk (RIR) among statin-treated US adults who have achieved guideline-recommended LDL-C levels. RIR is defined as persistent elevation of hs-CRP (≥2 mg/L) despite statin therapy and LDL-C control (<70 mg/dL).
 
+Per PI request, this update includes: (1) 6-group LDL × statin stratification, (2) diabetes/prediabetes evaluation, and (3) sex-stratified analyses.
+
 
 METHODS
 
 Data Source and Population
 
-We used NHANES data from 2005-2010 and 2015-2020, representing five two-year survey cycles. The 2011-2014 cycles were not included in this initial analysis due to data access constraints in our automated pipeline; we plan to incorporate them in a future robustness check.
+We used NHANES data from 2005-2010 and 2015-2020, representing five two-year survey cycles. The 2011-2014 cycles were not included due to data access constraints; inclusion is planned as a robustness check.
 
-The analytic sample included fasting adults aged 20 years and older with complete data on statin use, lipid panel, and hs-CRP. We excluded individuals with hs-CRP >10 mg/L to remove acute inflammatory states.
+The analytic sample included 12,896 fasting adults aged 20+ years with complete data on statin use, lipids, and hs-CRP. We excluded individuals with hs-CRP >10 mg/L.
 
 Variable Definitions
 
-Statin use was identified from prescription medication files (RXQ_RX) using both generic drug name matching (atorvastatin, simvastatin, rosuvastatin, pravastatin, lovastatin, fluvastatin, pitavastatin) and Multum therapeutic class codes.
-
-LDL-C was calculated using the Friedewald equation (total cholesterol minus HDL minus triglycerides/5). Direct LDL measurements were used as a secondary source when calculated values were unavailable and triglycerides were below 400 mg/dL.
-
-RIR was defined as: statin use + LDL-C <70 mg/dL + hs-CRP ≥2 mg/L.
-
-Statistical Approach
-
-All analyses incorporated NHANES complex survey design using fasting subsample weights, strata, and primary sampling units. Prevalence estimates are survey-weighted and nationally representative. Logistic regression models used a parsimonious approach given the sample size.
+- Statin use: Identified from RXQ_RX using drug names and Multum therapeutic class codes.
+- LDL-C: Calculated via Friedewald equation.
+- Prediabetes: HbA1c 5.7-6.4% or fasting glucose 100-125 mg/dL.
+- Diabetes: HbA1c ≥6.5% or fasting glucose ≥126 mg/dL or self-reported diagnosis.
+- RIR: Statin use + LDL-C <70 mg/dL + hs-CRP ≥2 mg/L.
 
 
 STUDY POPULATION
 
-Starting with 12,896 fasting adults aged 20 and older across the included cycles, we identified 2,527 statin users (19.6%). Among these, 577 had achieved LDL-C <70 mg/dL, constituting our primary analytic cohort. Of these 577 individuals, 141 met criteria for RIR.
+Total fasting participants (≥20 years): 12,896
+Statin users: 2,527 (19.6%)
+Statin users with LDL-C <70 mg/dL: 577
+RIR cases: 141
 
 
 PRIMARY RESULTS
 
-RIR Prevalence
+RIR Prevalence (Statin users with LDL-C <70)
 
-Among statin users with LDL-C <70 mg/dL, 21.9% (95% CI: 15.9-27.9%) had residual inflammatory risk. Using a stricter hs-CRP threshold of ≥3 mg/L, prevalence was 13.4% (95% CI: 8.8-18.0%).
+- Primary (hs-CRP ≥2 mg/L): 21.9% (95% CI: 15.9-27.9%)
+- Sensitivity (hs-CRP ≥3 mg/L): 13.4% (95% CI: 8.8-18.0%)
+- Stricter LDL <55 mg/dL (N=213): 26.9% (95% CI: 17.0-36.8%)
 
-Among the subset achieving LDL-C <55 mg/dL (n=213), RIR prevalence was 26.9% (95% CI: 17.0-36.8%).
 
-Subgroup Patterns
+PI REQUEST #1: 6-GROUP LDL × STATIN ANALYSIS
 
-RIR prevalence appeared similar between men (23.7%, SE 3.5%) and women (19.2%, SE 4.5%).
+Groups:
+1. LDL≤70, Statin user (N=582)
+2. LDL≤70, No statin (N=762)
+3. LDL 70-130, Statin user (N=1,650)
+4. LDL 70-130, No statin (N=6,136)
+5. LDL>130, Statin user (N=295)
+6. LDL>130, No statin (N=3,471)
 
-By age group, prevalence was numerically highest in the 50-59 year range (46.8%, SE 9.9%), though this estimate carries substantial uncertainty due to limited sample size.
+hs-CRP ≥2 mg/L Prevalence by Group:
 
-By race/ethnicity, prevalence ranged from 20.4% (SE 3.9%) in Non-Hispanic White adults to 29.4% (SE 4.6%) in Non-Hispanic Black adults. These subgroup estimates are exploratory and confidence intervals overlap considerably.
+Group                     Prevalence    SE
+LDL≤70, Statin              22.4%      3.0%
+LDL≤70, No Statin           14.5%      2.0%
+LDL 70-130, Statin          20.1%      1.8%
+LDL 70-130, No Statin       17.7%      0.8%
+LDL>130, Statin             27.0%      4.6%
+LDL>130, No Statin          19.8%      1.3%
 
-Clinical Characteristics
+Key observations:
+- Statin users consistently show higher hs-CRP ≥2 prevalence than non-users within each LDL tier
+- Highest inflammatory burden in LDL>130 statin group (27.0%)
+- LDL≤70 without statins shows 14.5% with elevated hs-CRP (the "low LDL, high inflammation" phenotype)
 
-Compared to statin users with LDL-C <70 but without RIR, those with RIR had higher prevalence of diabetes (64.6% vs 51.1%), hypertension (87.9% vs 76.8%), obesity (53.5% vs 45.8%), and current smoking (17.7% vs 13.2%).
+Mean hs-CRP by Group (mg/L):
 
-Predictors of RIR
+Group                     Mean hs-CRP   SE
+LDL≤70, Statin              1.40       0.13
+LDL≤70, No Statin           1.06       0.10
+LDL 70-130, Statin          1.29       0.07
+LDL 70-130, No Statin       1.16       0.04
+LDL>130, Statin             1.50       0.17
+LDL>130, No Statin          1.24       0.06
 
-In survey-weighted logistic regression adjusting for age, sex, race/ethnicity, BMI, diabetes, hypertension, smoking, and triglycerides, no individual predictor reached statistical significance at alpha=0.05. BMI showed a trend toward association with higher RIR odds (OR 1.05 per kg/m², 95% CI 1.00-1.11, p=0.055).
+
+PI REQUEST #2: DIABETES/PREDIABETES STRATIFICATION
+
+Glycemic Status Distribution:
+- Normal: 4,717 (36.6%)
+- Prediabetes: 5,745 (44.5%)
+- Diabetes: 2,434 (18.9%)
+
+RIR Prevalence by Glycemic Status (Statin + LDL<70):
+
+Status          Prevalence    SE
+Normal            15.3%       9.3%
+Prediabetes       17.4%       5.2%
+Diabetes          26.2%       4.8%
+
+hs-CRP ≥2 Prevalence by Glycemic Status × LDL×Statin Group:
+
+                        Normal    Prediabetes    Diabetes
+LDL≤70, Statin          15.3%       17.4%        27.2%
+LDL≤70, No Statin        9.3%       20.5%        30.0%
+LDL 70-130, Statin      14.2%       17.7%        26.2%
+LDL 70-130, No Statin   12.4%       21.5%        33.6%
+LDL>130, Statin         20.4%       27.7%        29.4%
+LDL>130, No Statin      13.5%       22.4%        31.9%
+
+Key observation: Diabetes consistently associated with ~2x higher hs-CRP ≥2 prevalence across all LDL×statin groups.
+
+
+PI REQUEST #3: SEX-STRATIFIED ANALYSIS
+
+RIR Prevalence by Sex (Statin + LDL<70):
+
+Sex       Prevalence    SE
+Male        23.7%       3.5%
+Female      19.2%       4.5%
+
+hs-CRP ≥2 Prevalence by Sex × LDL×Statin Group:
+
+                        Male      Female
+LDL≤70, Statin         23.5%      20.9%
+LDL≤70, No Statin       9.7%      18.3%
+LDL 70-130, Statin     18.0%      22.5%
+LDL 70-130, No Statin  14.9%      20.2%
+LDL>130, Statin        20.4%      32.0%
+LDL>130, No Statin     17.5%      22.0%
+
+Key observations:
+- Women show higher hs-CRP ≥2 prevalence than men in non-statin groups
+- In LDL>130 statin group, women have notably higher inflammatory burden (32.0% vs 20.4%)
+- Among LDL≤70 without statins, men have lower hs-CRP prevalence (9.7%) than women (18.3%)
+
+Sex-Specific Predictors of RIR:
+
+Males (N=338):
+- BMI: OR 1.03 per kg/m² (NS)
+- Diabetes: OR 1.32 (NS)
+- Hypertension: OR 1.65 (NS)
+
+Females (N=239):
+- Age: OR 1.04 per year (p=0.04)
+- BMI: OR 1.07 per kg/m² (p=0.02)
+- No other significant predictors
 
 
 SENSITIVITY ANALYSES
 
-RIR prevalence showed a clear dose-response pattern across hs-CRP thresholds: 29.6% at ≥1.5 mg/L, declining to 6.4% at ≥5.0 mg/L.
+hs-CRP Threshold Sensitivity (Statin + LDL<70):
 
-RIR prevalence remained relatively stable across LDL-C thresholds (range 20.7-26.9% from <100 to <55 mg/dL), suggesting that residual inflammation persists even as lipid control intensifies.
+Threshold    Prevalence    95% CI
+≥1.5 mg/L      29.6%      23.7-35.5%
+≥2.0 mg/L      21.9%      15.9-27.9%
+≥2.5 mg/L      17.6%      12.6-22.5%
+≥3.0 mg/L      13.4%       8.8-18.0%
+≥4.0 mg/L       9.7%       5.5-14.0%
+≥5.0 mg/L       6.4%       3.3-9.6%
+
+LDL-C Threshold Sensitivity (hs-CRP ≥2):
+
+Threshold    N      Prevalence    95% CI
+<55 mg/dL   213      26.9%       17.0-36.8%
+<60 mg/dL   317      25.7%       17.3-34.1%
+<65 mg/dL   434      22.7%       16.8-28.7%
+<70 mg/dL   577      21.9%       15.9-27.9%
+<80 mg/dL   914      23.5%       18.7-28.4%
+<100 mg/dL  1605     20.7%       17.4-24.0%
 
 
-DEVIATIONS FROM ORIGINAL PLAN
+KEY FINDINGS
 
-The analysis was conducted as planned with the following modifications:
+1. Primary finding remains robust: ~22% of statin-treated adults with LDL<70 have RIR.
 
-1. Cycle inclusion: We used 2005-2020 as recommended, but the 2011-2014 cycles were excluded from this initial pass due to hs-CRP file access issues in the automated download. Five cycles (10 years of data) were analyzed.
+2. 6-group analysis shows statin users have higher hs-CRP prevalence than non-users within each LDL tier, suggesting statins may be preferentially prescribed to higher-risk individuals or that statin use alone does not fully address inflammatory risk.
 
-2. LDL-C calculation: Friedewald equation used as primary, with direct LDL as fallback when calculated values were missing and triglycerides <400 mg/dL, as specified.
+3. LDL≤70 without statins shows 14.5% with elevated hs-CRP, supporting the existence of a "low LDL, high inflammation" phenotype independent of statin use.
 
-3. Statistical testing: Formal chi-square tests comparing RIR vs non-RIR groups were not performed in this initial analysis; descriptive comparisons are presented. Subgroup interaction tests were not powered.
+4. Diabetes/prediabetes strongly associated with elevated hs-CRP across all groups, with diabetics showing roughly double the hs-CRP ≥2 prevalence of normoglycemics.
+
+5. Sex differences exist: women show higher inflammatory burden in non-statin groups; BMI and age are significant predictors of RIR in women but not men.
 
 
 LIMITATIONS
 
-This is a cross-sectional analysis and cannot establish causality. hs-CRP was measured once, so within-person variability is not captured. The regression model has limited power given 141 RIR events among 577 subjects. Statin adherence is based on self-report.
-
-
-INTERPRETATION
-
-Approximately one in five statin-treated US adults who achieve LDL-C <70 mg/dL have persistent inflammatory risk as defined by hs-CRP ≥2 mg/L. This finding is consistent with trial data suggesting 30-40% of statin-treated patients maintain elevated hs-CRP. The slightly lower prevalence in NHANES may reflect the stricter LDL threshold (<70 vs <100 mg/dL in many trials) or population differences.
-
-These results support the rationale for identifying and potentially targeting residual inflammatory risk in patients with well-controlled lipids.
+1. Cross-sectional design precludes causal inference
+2. hs-CRP measured once; repeated measurements would reduce misclassification
+3. Subgroup analyses are exploratory and not powered for formal comparisons
+4. 2011-2014 cycles not yet incorporated
+5. Statin adherence not directly measured
 
 
 FILES GENERATED
 
-- data/processed/rir_analytic_cohort.csv (cleaned analytic dataset)
-- output/tables/rir_prevalence_results.csv (primary prevalence estimates)
-- output/tables/rir_prevalence_by_subgroup.csv (subgroup analyses)
-
+- data/processed/rir_analytic_cohort.csv
+- output/tables/rir_prevalence_results.csv
+- output/tables/rir_prevalence_by_subgroup.csv
+- output/tables/hscrp_by_ldl_statin_group.csv
+- output/tables/rir_by_glycemic_status.csv
+- output/tables/hscrp_by_sex_ldl_group.csv

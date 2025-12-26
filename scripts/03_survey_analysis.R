@@ -114,9 +114,27 @@ df <- df %>%
     
     # Binary versions for analysis
     diabetes_bin = as.numeric(diabetes == 1),
+    prediabetes_bin = as.numeric(prediabetes == 1),
     hypertension_bin = as.numeric(hypertension == 1),
     obese_bin = as.numeric(obese == 1),
     current_smoker_bin = as.numeric(current_smoker == 1),
+    
+    # Glycemic status factor (PI request: diabetes/prediabetes)
+    glycemic_cat = factor(glycemic_status,
+                          levels = c(0, 1, 2),
+                          labels = c("Normal", "Prediabetes", "Diabetes")),
+    
+    # LDL category factor
+    ldl_cat_f = factor(ldl_cat,
+                       levels = c(1, 2, 3),
+                       labels = c("LDL ≤70", "LDL 70-130", "LDL >130")),
+    
+    # 6-group LDL × Statin (PI request)
+    ldl_statin_group_f = factor(ldl_statin_group,
+                                levels = c(1, 2, 3, 4, 5, 6),
+                                labels = c("LDL≤70, Statin", "LDL≤70, No Statin",
+                                          "LDL 70-130, Statin", "LDL 70-130, No Statin",
+                                          "LDL>130, Statin", "LDL>130, No Statin")),
     
     # RIR status factor
     rir_cat = factor(rir, levels = c(0, 1), labels = c("No RIR", "RIR"))
@@ -380,10 +398,187 @@ tryCatch({
 })
 
 # =============================================================================
-# ANALYSIS 5: Sensitivity Analyses
+# ANALYSIS 5: PI REQUEST - 6-Group LDL × Statin Analysis
 # =============================================================================
 cat("\n", strrep("=", 70), "\n")
-cat("ANALYSIS 5: SENSITIVITY ANALYSES\n")
+cat("ANALYSIS 5: LDL × STATIN 6-GROUP ANALYSIS (PI REQUEST)\n")
+cat(strrep("=", 70), "\n\n")
+
+cat("Groups:\n")
+cat("  1. LDL≤70, Statin user\n")
+cat("  2. LDL≤70, No statin\n")
+cat("  3. LDL 70-130, Statin user\n")
+cat("  4. LDL 70-130, No statin\n")
+cat("  5. LDL>130, Statin user\n")
+cat("  6. LDL>130, No statin\n\n")
+
+# Group sample sizes
+cat("Sample sizes by group:\n")
+group_n <- df %>% 
+  filter(!is.na(ldl_statin_group)) %>%
+  group_by(ldl_statin_group_f) %>%
+  summarise(n = n(), .groups = "drop")
+print(group_n)
+
+# hs-CRP ≥2 prevalence by 6 groups
+cat("\nhs-CRP ≥2 mg/L PREVALENCE BY LDL×STATIN GROUP:\n")
+cat(strrep("-", 50), "\n")
+
+tryCatch({
+  hscrp_by_group <- svyby(~hscrp_high, ~ldl_statin_group_f, 
+                          design = design_full, 
+                          FUN = svymean, na.rm = TRUE)
+  print(hscrp_by_group)
+  
+  # Calculate CIs
+  cat("\nWith 95% CIs:\n")
+  for (i in 1:nrow(hscrp_by_group)) {
+    grp <- rownames(hscrp_by_group)[i]
+    prev <- hscrp_by_group[i, "hscrp_high"] * 100
+    se <- hscrp_by_group[i, "se.hscrp_high"] * 100
+    ci_low <- prev - 1.96 * se
+    ci_high <- prev + 1.96 * se
+    cat(sprintf("  %s: %.1f%% (95%% CI: %.1f%% - %.1f%%)\n",
+                grp, prev, max(0, ci_low), ci_high))
+  }
+}, error = function(e) cat("Error:", e$message, "\n"))
+
+# Mean hs-CRP by 6 groups
+cat("\nMEAN hs-CRP BY LDL×STATIN GROUP:\n")
+cat(strrep("-", 50), "\n")
+tryCatch({
+  hscrp_means <- svyby(~hscrp, ~ldl_statin_group_f, 
+                       design = design_full, 
+                       FUN = svymean, na.rm = TRUE)
+  print(hscrp_means)
+}, error = function(e) cat("Error:", e$message, "\n"))
+
+# =============================================================================
+# ANALYSIS 6: PI REQUEST - Diabetes/Prediabetes Stratification
+# =============================================================================
+cat("\n", strrep("=", 70), "\n")
+cat("ANALYSIS 6: DIABETES/PREDIABETES STRATIFICATION (PI REQUEST)\n")
+cat(strrep("=", 70), "\n\n")
+
+# Glycemic status distribution
+cat("Glycemic status distribution:\n")
+glycemic_n <- df %>%
+  filter(!is.na(glycemic_status)) %>%
+  group_by(glycemic_cat) %>%
+  summarise(n = n(), .groups = "drop")
+print(glycemic_n)
+
+# RIR prevalence by glycemic status (among statin users with LDL<70)
+cat("\nRIR PREVALENCE BY GLYCEMIC STATUS (statin + LDL<70):\n")
+cat(strrep("-", 50), "\n")
+tryCatch({
+  rir_by_glycemic <- svyby(~rir, ~glycemic_cat, 
+                           design = design_primary, 
+                           FUN = svymean, na.rm = TRUE)
+  print(rir_by_glycemic)
+}, error = function(e) cat("Error:", e$message, "\n"))
+
+# hs-CRP ≥2 by glycemic status across ALL 6 LDL×statin groups
+cat("\nhs-CRP ≥2 PREVALENCE BY GLYCEMIC STATUS × LDL×STATIN GROUP:\n")
+cat(strrep("-", 50), "\n")
+tryCatch({
+  hscrp_glycemic_ldl <- svyby(~hscrp_high, ~ldl_statin_group_f + glycemic_cat,
+                               design = design_full,
+                               FUN = svymean, na.rm = TRUE)
+  print(hscrp_glycemic_ldl)
+}, error = function(e) cat("Error:", e$message, "\n"))
+
+# =============================================================================
+# ANALYSIS 7: PI REQUEST - Sex-Stratified Analysis
+# =============================================================================
+cat("\n", strrep("=", 70), "\n")
+cat("ANALYSIS 7: SEX-STRATIFIED ANALYSIS (PI REQUEST)\n")
+cat(strrep("=", 70), "\n\n")
+
+# A. hs-CRP ≥2 prevalence by sex across 6 LDL×statin groups
+cat("A. hs-CRP ≥2 PREVALENCE BY SEX × LDL×STATIN GROUP:\n")
+cat(strrep("-", 50), "\n")
+tryCatch({
+  hscrp_sex_ldl <- svyby(~hscrp_high, ~ldl_statin_group_f + sex_cat,
+                          design = design_full,
+                          FUN = svymean, na.rm = TRUE)
+  print(hscrp_sex_ldl)
+}, error = function(e) cat("Error:", e$message, "\n"))
+
+# B. RIR prevalence by sex (statin + LDL<70)
+cat("\nB. RIR PREVALENCE BY SEX (statin + LDL<70):\n")
+cat(strrep("-", 50), "\n")
+tryCatch({
+  rir_by_sex_detail <- svyby(~rir, ~sex_cat, 
+                              design = design_primary, 
+                              FUN = svymean, na.rm = TRUE)
+  for (i in 1:nrow(rir_by_sex_detail)) {
+    sex <- rownames(rir_by_sex_detail)[i]
+    prev <- rir_by_sex_detail[i, "rir"] * 100
+    se <- rir_by_sex_detail[i, "se.rir"] * 100
+    ci_low <- prev - 1.96 * se
+    ci_high <- prev + 1.96 * se
+    cat(sprintf("  %s: %.1f%% (95%% CI: %.1f%% - %.1f%%)\n",
+                sex, prev, max(0, ci_low), ci_high))
+  }
+}, error = function(e) cat("Error:", e$message, "\n"))
+
+# C. Sex-specific predictors of RIR
+cat("\nC. SEX-SPECIFIC RIR PREDICTORS:\n")
+cat(strrep("-", 50), "\n")
+
+# Male model
+cat("\nMales only:\n")
+design_primary_male <- subset(design_primary, sex == 1)
+tryCatch({
+  if (sum(design_primary_male$variables$rir, na.rm = TRUE) >= 10) {
+    model_male <- svyglm(rir ~ age + race_cat + bmi + diabetes_bin + hypertension_bin,
+                         design = design_primary_male,
+                         family = quasibinomial())
+    cat("Odds Ratios:\n")
+    or_male <- exp(coef(model_male))
+    ci_male <- exp(confint(model_male))
+    print(round(data.frame(OR = or_male, CI_lower = ci_male[,1], CI_upper = ci_male[,2]), 3))
+  } else {
+    cat("  Insufficient RIR cases for model\n")
+  }
+}, error = function(e) cat("Error:", e$message, "\n"))
+
+# Female model
+cat("\nFemales only:\n")
+design_primary_female <- subset(design_primary, sex == 2)
+tryCatch({
+  if (sum(design_primary_female$variables$rir, na.rm = TRUE) >= 10) {
+    model_female <- svyglm(rir ~ age + race_cat + bmi + diabetes_bin + hypertension_bin,
+                           design = design_primary_female,
+                           family = quasibinomial())
+    cat("Odds Ratios:\n")
+    or_female <- exp(coef(model_female))
+    ci_female <- exp(confint(model_female))
+    print(round(data.frame(OR = or_female, CI_lower = ci_female[,1], CI_upper = ci_female[,2]), 3))
+  } else {
+    cat("  Insufficient RIR cases for model\n")
+  }
+}, error = function(e) cat("Error:", e$message, "\n"))
+
+# D. Interaction: Sex × hs-CRP in full model
+cat("\nD. SEX × hs-CRP INTERACTION TEST:\n")
+cat(strrep("-", 50), "\n")
+tryCatch({
+  # Model with interaction
+  model_interaction <- svyglm(rir ~ age + sex_cat + race_cat + bmi + 
+                               diabetes_bin + hypertension_bin + sex_cat:hscrp,
+                             design = design_primary,
+                             family = quasibinomial())
+  cat("Model with sex × hs-CRP interaction:\n")
+  print(summary(model_interaction)$coefficients)
+}, error = function(e) cat("Error:", e$message, "\n"))
+
+# =============================================================================
+# ANALYSIS 8: Sensitivity Analyses
+# =============================================================================
+cat("\n", strrep("=", 70), "\n")
+cat("ANALYSIS 8: SENSITIVITY ANALYSES\n")
 cat(strrep("=", 70), "\n\n")
 
 # A. Different hs-CRP thresholds
@@ -492,6 +687,24 @@ if (exists("rir_by_sex")) {
   
   write_csv(subgroup_results, file.path(output_dir, "rir_prevalence_by_subgroup.csv"))
   cat("Saved: rir_prevalence_by_subgroup.csv\n")
+}
+
+# Save 6-group LDL×Statin results
+if (exists("hscrp_by_group")) {
+  write_csv(hscrp_by_group, file.path(output_dir, "hscrp_by_ldl_statin_group.csv"))
+  cat("Saved: hscrp_by_ldl_statin_group.csv\n")
+}
+
+# Save glycemic stratification results
+if (exists("rir_by_glycemic")) {
+  write_csv(rir_by_glycemic, file.path(output_dir, "rir_by_glycemic_status.csv"))
+  cat("Saved: rir_by_glycemic_status.csv\n")
+}
+
+# Save sex-stratified results
+if (exists("hscrp_sex_ldl")) {
+  write_csv(hscrp_sex_ldl, file.path(output_dir, "hscrp_by_sex_ldl_group.csv"))
+  cat("Saved: hscrp_by_sex_ldl_group.csv\n")
 }
 
 cat("\n", strrep("=", 70), "\n")
