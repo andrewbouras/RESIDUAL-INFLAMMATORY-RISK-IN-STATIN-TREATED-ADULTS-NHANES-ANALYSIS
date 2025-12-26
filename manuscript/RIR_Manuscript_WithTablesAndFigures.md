@@ -249,6 +249,46 @@ Women showed higher inflammatory burden than men in most subgroups, particularly
 
 \newpage
 
+## FIGURE 4. Clinical Characteristics by Residual Inflammatory Risk Status
+
+![Figure 4](figures/Figure4_Characteristics_by_RIR.png)
+
+Comparison of clinical characteristics between participants with and without residual inflammatory risk among statin users with LDL-C <70 mg/dL. Panel A shows metabolic characteristics (BMI and HbA1c), with RIR participants having higher values for both (BMI: 32.4 vs 29.8 kg/m², P=0.039; HbA1c: 6.9% vs 6.2%, P=0.032). Panel B shows comorbidity prevalence, with RIR participants having higher rates of diabetes (64.6% vs 51.1%), hypertension (87.9% vs 76.8%, P=0.042), obesity (53.5% vs 45.8%), and current smoking (17.7% vs 13.2%). Error bars represent 95% confidence intervals. RIR defined as hs-CRP ≥2 mg/L. NHANES 2005-2010, 2015-2020 (N = 577).
+
+---
+
+\newpage
+
+## FIGURE 5. RIR Prevalence Across hs-CRP Thresholds (Dose-Response)
+
+![Figure 5](figures/Figure5_Dose_Response.png)
+
+Survey-weighted prevalence of elevated hs-CRP among statin users with LDL-C <70 mg/dL across a range of hs-CRP thresholds (1.0-10.0 mg/L). The curve demonstrates a consistent dose-response relationship, with prevalence decreasing from 37.9% at the >=1.0 mg/L threshold to near 0% at >=10 mg/L. The primary threshold (>=2.0 mg/L, highlighted in red) corresponds to a prevalence of 21.9%. Shaded region represents 95% CI. This sensitivity analysis supports the robustness of the primary RIR estimate across threshold definitions. NHANES 2005-2010, 2015-2020 (N = 577).
+
+---
+
+\newpage
+
+## FIGURE 6. All-Cause Mortality by hs-CRP Status Among Statin Users
+
+![Figure 6](figures/Figure6_KM_Survival.png)
+
+Kaplan-Meier survival curves comparing statin users with hs-CRP >=2 mg/L versus <2 mg/L. Among 1,714 statin users with mortality follow-up (mean 8.3 years), those with elevated hs-CRP had significantly higher all-cause mortality (adjusted HR = 1.49, 95% CI: 1.03-2.15, P = 0.032). Models adjusted for age, sex, and race/ethnicity. The 487 deaths over up to 14 years of follow-up provide adequate power to detect this clinically meaningful difference. NHANES 2005-2016 with mortality linkage through 2019.
+
+---
+
+\newpage
+
+## FIGURE 7. All-Cause Mortality by RIR Status (LDL-C <70 mg/dL Subgroup)
+
+![Figure 7](figures/Figure7_KM_RIR_Subgroup.png)
+
+Kaplan-Meier survival curves for the primary RIR cohort (statin users with LDL-C <70 mg/dL, N=343). Participants with RIR (hs-CRP >=2 mg/L) showed a trend toward higher mortality compared to those without RIR (HR = 1.80, 95% CI: 0.93-3.49, P = 0.08). While not statistically significant, the magnitude of the effect (80% higher mortality) is clinically relevant and consistent with the overall hs-CRP-mortality association. The analysis was limited by the smaller sample size and fewer events in this high-risk subgroup.
+
+---
+
+\newpage
+
 ## SUPPLEMENTAL TABLE 1. Sensitivity Analyses: RIR Prevalence Across hs-CRP Thresholds
 
 | hs-CRP Threshold | Prevalence | 95% CI |
