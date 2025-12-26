@@ -1,0 +1,14 @@
+# Data (too large, can be re-downloaded)
+data/raw/
+*.parquet
+
+# OS files
+.DS_Store
+~$*
+
+# Temp/duplicate files
+*.pyc
+__pycache__/
+.Rhistory
+.RData
+

@@ -1,0 +1,48 @@
+Title
+Prevalence of Residual Inflammatory Risk Among Statin-Treated U.S. Adults Achieving LDL-C <70 mg/dL: A Nationally Representative NHANES Study
+
+Background and Significance
+Statins reduce LDL-C and cardiovascular events, yet a substantial proportion of patients maintain elevated inflammatory markers. High-sensitivity C-reactive protein (hs-CRP) independently predicts cardiovascular risk even after LDL-C is controlled. Contemporary trials consistently report that 30–40 percent of statin-treated patients have hs-CRP ≥2 mg/L despite adequate LDL-C reduction, and these patients experience higher event rates than those with elevated LDL-C alone. Nationally representative U.S. estimates for this specific “on-treatment residual inflammatory risk” group remain unknown.
+
+Objectives
+Primary: Estimate the weighted prevalence of residual inflammatory risk (RIR) among statin-treated adults achieving LDL-C <70 mg/dL.
+Secondary:
+• Compare demographic and clinical characteristics between statin users with vs without RIR.
+• Evaluate alternative definitions (hs-CRP ≥3 mg/L; LDL-C <55 mg/dL).
+• Identify predictors of RIR using survey-weighted regression.
+
+Data Source
+NHANES cycles with complete data on lipids, hs-CRP, prescription medications, and fasting labs. Use appropriate examination weights, strata, and clustering for all analyses.
+
+Population
+Inclusion: Adults ≥20 years with
+• self-reported statin use (identified from medication files),
+• fasting LDL-C measured,
+• hs-CRP measured.
+Exclusion:
+• hs-CRP >10 mg/L,
+• missing key variables.
+
+Primary analytic cohort: Statin users with LDL-C <70 mg/dL.
+
+Key Variables
+• Statin use: from prescription files.
+• LDL-C: fasting subsample.
+• hs-CRP: mg/L.
+• Covariates: age, sex, race/ethnicity, BMI, diabetes, hypertension, smoking, triglycerides, HDL-C.
+
+Definition of RIR
+Primary: statin use + LDL-C <70 mg/dL + hs-CRP ≥2 mg/L.
+Sensitivity:
+• hs-CRP ≥3 mg/L,
+• LDL-C <55 mg/dL,
+• exclusion of hs-CRP >10 mg/L.
+
+Statistical Plan
+• Compute weighted prevalence of RIR overall and by subgroups.
+• Compare characteristics using survey-adjusted t-tests and chi-square tests.
+• Fit survey-weighted logistic regression to identify predictors of RIR.
+• Conduct stratified and sensitivity analyses using alternative thresholds.
+
+Expected Contribution
+This study fills a national-level knowledge gap on the burden of residual inflammatory risk among statin-treated patients with well-controlled LDL-C. Findings can inform population-level risk stratification and support clinical pathways targeting inflammation as a secondary therapeutic goal.
