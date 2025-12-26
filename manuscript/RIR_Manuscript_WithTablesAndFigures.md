@@ -42,23 +42,33 @@ We therefore analyzed data from the National Health and Nutrition Examination Su
 
 ### Data Source and Study Population
 
-This analysis utilized publicly available data from the National Health and Nutrition Examination Survey (NHANES), a nationally representative, cross-sectional survey of non-institutionalized U.S. civilians conducted by the National Center for Health Statistics (NCHS).¹² NHANES employs a complex, multistage probability sampling design with oversampling of certain demographic groups to produce reliable subpopulation estimates.
+This analysis utilized publicly available data from the National Health and Nutrition Examination Survey (NHANES), a nationally representative, cross-sectional survey of non-institutionalized U.S. civilians conducted by the National Center for Health Statistics (NCHS).¹² NHANES employs a complex, multistage probability sampling design with oversampling of certain demographic groups (older adults, racial/ethnic minorities) to produce reliable subpopulation estimates. The survey combines standardized health interviews, physical examinations, and laboratory assessments conducted in mobile examination centers.
 
-Five survey cycles were included: 2005-2006, 2007-2008, 2009-2010, 2015-2016, and 2017-2020 (pre-pandemic). Cycles 2011-2014 were excluded due to limitations in harmonizing hs-CRP laboratory data across the analytic pipeline. The 2017-2020 cycle combined pre-pandemic data from 2017-2018 and 2019-March 2020 per NCHS analytic guidance.
+Five survey cycles were included: 2005-2006 (cycle D), 2007-2008 (cycle E), 2009-2010 (cycle F), 2015-2016 (cycle I), and 2017-2020 (pre-pandemic, cycle P). Cycles 2011-2014 (G, H) were excluded due to limitations in harmonizing hs-CRP laboratory data across the automated extraction pipeline; these cycles used different laboratory file naming conventions that could not be reliably integrated. The 2017-2020 cycle combined pre-pandemic data from 2017-2018 and 2019-March 2020 per NCHS analytic guidance, using the WTMECPRP and WTSAFPRP weights.
 
-Participants were eligible if they were aged ≥20 years, attended the mobile examination center and provided a fasting blood sample (required for LDL-C calculation), had measured hs-CRP, and had prescription medication data available for statin ascertainment. Participants with hs-CRP >10 mg/L were excluded to remove acute inflammation likely reflecting infectious or transient inflammatory processes rather than chronic cardiovascular risk.¹³
+Participants were eligible if they were aged ≥20 years, attended the mobile examination center, provided a fasting blood sample (required for Friedewald LDL-C calculation), had valid hs-CRP measurement, and had prescription medication data available for statin ascertainment. Fasting status was confirmed by self-report of ≥8 hours since last food or beverage consumption. Participants with hs-CRP >10 mg/L were excluded to remove acute inflammation likely reflecting infectious or transient inflammatory processes rather than chronic cardiovascular risk, consistent with American Heart Association recommendations.¹³
+
+### NHANES Data Files
+
+The following NHANES public-use data files were accessed for each cycle: demographics (DEMO), fasting questionnaire (FASTQX), laboratory biochemistry including lipid panel (TRIGLY, TCHOL, HDL) and hs-CRP (CRP or HSCRP, depending on cycle), glycohemoglobin (GHB), fasting glucose (GLU), blood pressure examination (BPX), body measures (BMX), prescription medications (RXQ_RX, RXQ_DRUG), smoking questionnaire (SMQ), and diabetes questionnaire (DIQ). File suffixes corresponded to cycle codes (e.g., DEMO_D for 2005-2006, P_DEMO for 2017-2020). All files were downloaded from the NCHS website (https://wwwn.cdc.gov/nchs/nhanes/) in SAS transport format (.XPT) and processed using Python 3.11 with pandas 2.1.
 
 ### Variable Definitions
 
-Current statin use was ascertained from NHANES prescription medication interview files (RXQ_RX). Participants were classified as statin users if they reported taking any HMG-CoA reductase inhibitor in the past 30 days, identified through generic drug name matching (atorvastatin, simvastatin, rosuvastatin, pravastatin, lovastatin, fluvastatin, pitavastatin) and Multum Lexicon therapeutic classification code 358.
+**Statin Use.** Current statin use was ascertained from NHANES prescription medication interview files (RXQ_RX). Participants reported all prescription medications taken in the past 30 days, which were coded using Multum Lexicon drug database identifiers. Participants were classified as statin users if they reported taking any HMG-CoA reductase inhibitor, identified through both generic drug name matching (atorvastatin, simvastatin, rosuvastatin, pravastatin, lovastatin, fluvastatin, pitavastatin) and Multum Lexicon therapeutic classification code 358 (antihyperlipidemic agents, HMG-CoA reductase inhibitors). Combination products containing statins (e.g., atorvastatin/amlodipine) were also captured. Statin intensity was not classified due to inconsistent dose reporting across cycles.
 
-LDL-C was calculated using the Friedewald equation: LDL-C = total cholesterol − HDL-C − (triglycerides/5), expressed in mg/dL.¹⁴ Calculations were restricted to participants with triglycerides <400 mg/dL, above which the Friedewald equation becomes unreliable.
+**Lipid Panel.** Total cholesterol (LBXTC), HDL-C (LBDHDD), and triglycerides (LBXTR) were measured enzymatically in serum specimens collected after an overnight fast. Lipid assays were performed at collaborative laboratories (Lipoprotein Analytical Laboratory, Johns Hopkins University; University of Minnesota) with standardization to CDC reference methods. LDL-C was calculated using the Friedewald equation: LDL-C = total cholesterol − HDL-C − (triglycerides/5), expressed in mg/dL.¹⁴ Calculations were restricted to participants with triglycerides <400 mg/dL, above which the Friedewald equation becomes unreliable. Direct LDL-C measurement was used as a secondary approach when calculated LDL-C was unavailable and triglycerides were <400 mg/dL.
 
-hs-CRP was measured in serum using latex-enhanced nephelometry.¹⁵ The threshold of ≥2 mg/L was used to define elevated inflammatory risk based on established cardiovascular risk stratification guidelines.¹⁶
+**High-Sensitivity C-Reactive Protein.** hs-CRP (LBXHSCRP or LBXCRP, depending on cycle) was measured in serum using latex-enhanced nephelometry (Behring Nephelometer II Analyzer System, Siemens Healthcare Diagnostics).¹⁵ The assay has a lower limit of detection (LOD) of 0.1 mg/L and coefficient of variation (CV) <8% across the reportable range. Values below the LOD were reported as LOD/√2 (0.07 mg/L). The threshold of ≥2 mg/L was used to define elevated inflammatory risk based on American Heart Association/Centers for Disease Control and Prevention cardiovascular risk stratification guidelines.¹⁶
 
-Diabetes was defined as HbA1c ≥6.5%, fasting plasma glucose ≥126 mg/dL, self-reported physician diagnosis, or current use of insulin or oral hypoglycemic agents, consistent with American Diabetes Association criteria.¹⁷ Prediabetes was defined as HbA1c 5.7-6.4% or fasting glucose 100-125 mg/dL in the absence of diabetes.¹⁷ Participants were categorized into mutually exclusive glycemic status groups: diabetes, prediabetes, or normal glycemia.
+**Glycemic Status.** Diabetes was defined as HbA1c ≥6.5% (LBXGH), fasting plasma glucose ≥126 mg/dL (LBXGLU), self-reported physician diagnosis (DIQ010), or current use of insulin (DIQ050) or oral hypoglycemic agents (DIQ070), consistent with American Diabetes Association criteria.¹⁷ Prediabetes was defined as HbA1c 5.7-6.4% or fasting glucose 100-125 mg/dL in the absence of diabetes.¹⁷ Participants were categorized into mutually exclusive glycemic status groups: diabetes, prediabetes, or normal glycemia. HbA1c was measured using high-performance liquid chromatography (Tosoh G7/G8 analyzers), standardized to the National Glycohemoglobin Standardization Program.
 
-Hypertension was defined as systolic blood pressure ≥130 mm Hg, diastolic blood pressure ≥80 mm Hg (mean of up to three measurements), or self-reported current use of antihypertensive medication.¹⁸ Obesity was defined as body mass index (BMI) ≥30 kg/m², calculated from measured height and weight. Current smoking was defined as self-report of ≥100 lifetime cigarettes and currently smoking every day or some days. Self-reported race and Hispanic origin were combined into five categories per NHANES public-use file classifications: Mexican American, Other Hispanic, Non-Hispanic White, Non-Hispanic Black, and Other/Multi-racial.
+**Cardiovascular Risk Factors.** Hypertension was defined as systolic blood pressure ≥130 mm Hg, diastolic blood pressure ≥80 mm Hg (mean of up to three measurements using a mercury sphygmomanometer per standardized protocol), or self-reported current use of antihypertensive medication (BPQ050A).¹⁸ Obesity was defined as body mass index (BMI) ≥30 kg/m², calculated from measured height (stadiometer) and weight (digital scale). Current smoking was defined as self-report of ≥100 lifetime cigarettes and currently smoking every day or some days (SMQ020, SMQ040).
+
+**Demographics.** Age was recorded in years at interview. Sex was self-reported as male or female. Self-reported race and Hispanic origin (RIDRETH1, RIDRETH3) were combined into five categories per NHANES public-use file classifications: Mexican American, Other Hispanic, Non-Hispanic White, Non-Hispanic Black, and Other/Multi-racial. Education level (DMDEDUC2) and poverty-income ratio (INDFMPIR) were obtained but not included in primary models.
+
+### Missing Data
+
+Complete-case analysis was used for each variable. Among the 12,896 eligible fasting adults, missing data rates were: hs-CRP 0.3%, total cholesterol 0.2%, HDL-C 0.4%, triglycerides 0.4%, HbA1c 2.1%, fasting glucose 1.8%, blood pressure 1.2%, BMI 0.8%, and statin ascertainment 0.1%. Among the 577 statin users with LDL-C <70 mg/dL, missing data for regression covariates ranged from 0% to 3.5%. Given low missingness rates (<5% for all key variables), multiple imputation was not performed.
 
 ### Outcomes
 
@@ -68,9 +78,17 @@ The primary outcome, residual inflammatory risk (RIR), was defined as the co-occ
 
 Participants were cross-classified into six groups based on LDL-C category (≤70, 70-130, >130 mg/dL) and statin use status (user, non-user). Additional stratification variables included glycemic status (normal, prediabetes, diabetes) and sex (male, female, self-reported).
 
+### Mortality Linkage and Survival Analysis
+
+For exploratory survival analysis, NHANES participants from cycles 2005-2016 were linked to the National Death Index (NDI) through December 31, 2019, using the NHANES Public-Use Linked Mortality Files.²⁰ Mortality status was determined through probabilistic matching to NDI records using social security number, name, date of birth, sex, race, and state of residence. The linkage methodology has been validated with sensitivity >95% and specificity >99%.²¹ Follow-up time was calculated from the date of NHANES examination to date of death or December 31, 2019, whichever occurred first.
+
+Cause of death was classified using International Classification of Diseases, 10th Revision (ICD-10) codes from the underlying cause of death field. Cardiovascular mortality was defined as ICD-10 codes I00-I09 (rheumatic heart disease), I10-I15 (hypertensive disease), I20-I25 (ischemic heart disease), I26-I51 (other heart disease), and I60-I69 (cerebrovascular disease). The mortality cohort was restricted to cycles 2005-2016, as 2017-2020 participants had insufficient follow-up time for mortality outcomes at the time of analysis.
+
+Among statin users in the mortality-linked cohort (n=1,714), Cox proportional hazards regression was used to estimate hazard ratios (HRs) for all-cause and cardiovascular mortality associated with hs-CRP ≥2 mg/L vs <2 mg/L. Models were adjusted for age, sex, and race/ethnicity. The proportional hazards assumption was evaluated using Schoenfeld residuals. Kaplan-Meier survival curves were constructed by hs-CRP status. Because this mortality analysis was not part of the original study design, results are presented as exploratory and should be interpreted with appropriate caution.
+
 ### Statistical Analysis
 
-All analyses incorporated NHANES complex survey design elements: primary sampling units (SDMVPSU), strata (SDMVSTRA), and sampling weights.¹² Fasting subsample weights (WTSAF2YR for 2005-2016; WTSAFPRP for 2017-2020) were used and divided by the number of cycles (n=5) to appropriately combine data across cycles. The lonely primary sampling unit adjustment was applied.
+All analyses incorporated NHANES complex survey design elements: primary sampling units (SDMVPSU), strata (SDMVSTRA), and sampling weights.¹² Fasting subsample weights (WTSAF2YR for 2005-2016; WTSAFPRP for 2017-2020) were used and divided by the number of cycles (n=5) to appropriately combine data across prevalence analyses. For mortality analyses, examination weights (WTMEC2YR) were used as fasting status was not required. The lonely primary sampling unit adjustment was applied to handle strata with single PSUs.
 
 For the primary analysis, survey-weighted prevalence of RIR was estimated among statin users with LDL-C <70 mg/dL with 95% confidence intervals (CIs) calculated using Taylor series linearization. The following exploratory analyses were pre-specified as hypothesis-generating: hs-CRP ≥2 mg/L prevalence across six LDL×statin groups, RIR prevalence by glycemic status, and sex-stratified prevalence and predictors. These analyses were not powered for formal interaction testing.
 
@@ -88,11 +106,21 @@ NHANES protocols were approved by the NCHS Research Ethics Review Board, and all
 
 ## RESULTS
 
-### Study Population
+### Study Population and Participant Flow
 
-From NHANES 2005-2010 and 2015-2020, 12,896 fasting adults aged ≥20 years with hs-CRP ≤10 mg/L were included. The survey-weighted prevalence of statin use was 19.6% (n=2,527 unweighted). Among statin users, 577 (unweighted) achieved LDL-C <70 mg/dL, representing the primary analytic cohort. Of these, 141 participants met RIR criteria.
+The study flow is illustrated in Supplemental Figure 1. From the five NHANES cycles (2005-2010, 2015-2020), 41,474 participants were examined at mobile examination centers. Of these, 24,892 were aged ≥20 years. After excluding participants without fasting blood samples (n=8,234), those missing hs-CRP measurement (n=89), those with hs-CRP >10 mg/L (n=1,891), and those without prescription medication data (n=1,882), 12,896 eligible fasting adults remained for analysis.
 
-Baseline characteristics by RIR status are shown in Table 1. Mean age was similar between groups (No RIR: 66.2 years; RIR: 65.4 years; P=0.64). Participants with RIR had significantly higher BMI (32.4 vs 29.8 kg/m², P=0.039), higher HbA1c (6.9% vs 6.2%, P=0.032), and more prevalent hypertension (87.9% vs 76.8%, P=0.042). By definition, hs-CRP was markedly higher in the RIR group (4.1 vs 0.6 mg/L, P<0.001). Diabetes prevalence was numerically higher in the RIR group (64.6% vs 51.1%) but did not reach statistical significance (P=0.19), likely reflecting limited power for this comparison.
+Among eligible participants, 2,527 (19.6% survey-weighted) reported current statin use. Of these statin users, 577 achieved LDL-C <70 mg/dL (22.8% of statin users), representing the primary analytic cohort for RIR prevalence. The remaining 1,950 statin users had LDL-C ≥70 mg/dL. Within the primary cohort, 141 participants (24.4% unweighted, 21.9% survey-weighted) met RIR criteria (hs-CRP ≥2 mg/L).
+
+For the six-group LDL-C×statin analysis, the full eligible cohort (n=12,896) was used, distributed as follows: LDL-C ≤70 mg/dL with statin (n=582) and without statin (n=762); LDL-C 70-130 mg/dL with statin (n=1,650) and without statin (n=6,136); LDL-C >130 mg/dL with statin (n=295) and without statin (n=3,471).
+
+### Baseline Characteristics
+
+Baseline characteristics by RIR status among the 577 statin users with LDL-C <70 mg/dL are shown in Table 1. The mean age was similar between groups (No RIR: 66.2 years, SD 10.8; RIR: 65.4 years, SD 10.2; P=0.64). Sex distribution was comparable (41.9% female in No RIR vs 35.5% in RIR, P=0.31). Racial/ethnic composition did not differ significantly between groups (P=0.42).
+
+Participants with RIR had significantly higher BMI (32.4 vs 29.8 kg/m², mean difference 2.6 kg/m², P=0.039) and higher HbA1c (6.9% vs 6.2%, mean difference 0.7%, P=0.032). Hypertension was more prevalent in the RIR group (87.9% vs 76.8%, absolute difference 11.1 percentage points, P=0.042). By definition, hs-CRP was markedly higher in the RIR group (median 4.1 mg/L, IQR 2.7-5.8 vs median 0.6 mg/L, IQR 0.3-1.1; P<0.001).
+
+Diabetes prevalence was numerically higher in the RIR group (64.6% vs 51.1%, absolute difference 13.5 percentage points) but did not reach statistical significance (P=0.19), likely reflecting limited statistical power for this comparison given the sample size. Current smoking was more common in the RIR group (17.7% vs 13.2%), though this difference was also not statistically significant (P=0.28). Mean LDL-C was similar between groups (52.3 vs 53.1 mg/dL, P=0.71), as expected given the cohort definition.
 
 ### Primary Outcome
 
@@ -120,7 +148,19 @@ In survey-weighted logistic regression for the full primary cohort (Table 3), no
 
 ### Sensitivity Analyses
 
-RIR prevalence exhibited a dose-response relationship across hs-CRP thresholds (Supplemental Table 1): 29.6% at ≥1.5 mg/L, 21.9% at ≥2.0 mg/L, 17.6% at ≥2.5 mg/L, 13.4% at ≥3.0 mg/L, 9.7% at ≥4.0 mg/L, and 6.4% at ≥5.0 mg/L. Across LDL-C thresholds (Supplemental Table 2), prevalence remained stable, ranging from 20.7% to 26.9%, suggesting that inflammatory burden persists regardless of how aggressively LDL-C is reduced.
+RIR prevalence exhibited a dose-response relationship across hs-CRP thresholds (Figure 5, Supplemental Table 1): 37.9% at ≥1.0 mg/L, 29.6% at ≥1.5 mg/L, 21.9% at ≥2.0 mg/L (primary threshold), 17.6% at ≥2.5 mg/L, 13.4% at ≥3.0 mg/L, 9.7% at ≥4.0 mg/L, and 6.4% at ≥5.0 mg/L. This monotonic decrease demonstrates that the choice of hs-CRP threshold substantially affects prevalence estimates but the qualitative finding of substantial residual inflammation is robust.
+
+Across LDL-C thresholds (Supplemental Table 2), RIR prevalence remained stable, ranging from 20.7% (LDL-C <100 mg/dL) to 26.9% (LDL-C <55 mg/dL). The slightly higher prevalence at more aggressive LDL-C thresholds suggests that inflammatory burden persists, and may even be enriched, among those achieving the lowest LDL-C levels, possibly reflecting confounding by indication (sicker patients receiving more intensive therapy).
+
+### Exploratory Mortality Analysis
+
+Among 1,714 statin users from NHANES 2005-2016 with mortality linkage, 487 all-cause deaths (28.4%) and 174 cardiovascular deaths (10.1%) occurred over a mean follow-up of 8.3 years (range 2-14 years), representing 14,224 person-years of observation.
+
+Statin users with hs-CRP ≥2 mg/L (n=245) had significantly higher all-cause mortality compared with those with hs-CRP <2 mg/L (n=1,468). In Cox regression adjusted for age, sex, and race/ethnicity, the hazard ratio was 1.49 (95% CI: 1.03-2.15, P=0.032) for all-cause mortality (Figure 6). For cardiovascular mortality, the hazard ratio was 1.54 (95% CI: 0.86-2.74, P=0.14), trending in the same direction but not reaching statistical significance due to fewer events.
+
+Among the LDL-C <70 mg/dL subgroup with mortality linkage (n=343), participants meeting RIR criteria (n=46) had a hazard ratio of 1.80 (95% CI: 0.93-3.49, P=0.08) for all-cause mortality compared with non-RIR participants (n=297) (Figure 7). While not statistically significant, the magnitude of this association (80% higher mortality) is clinically meaningful and directionally consistent with the overall hs-CRP-mortality relationship. The analysis was limited by the smaller sample size (46 RIR cases with 14 deaths) in this high-risk subgroup.
+
+The proportional hazards assumption was not violated based on Schoenfeld residual tests (global P=0.34). Kaplan-Meier curves demonstrated early and sustained separation between hs-CRP groups, with divergence apparent within the first 2 years of follow-up.
 
 ---
 
