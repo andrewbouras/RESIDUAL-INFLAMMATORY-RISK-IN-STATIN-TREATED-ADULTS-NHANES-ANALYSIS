@@ -1,0 +1,19 @@
+Group,Glycemic_Status,N,Prevalence,SE
+"LDL <e2><89><a4>70, Statin",Normal,47,15.3%,9.3%
+"LDL <e2><89><a4>70, Statin",Prediabetes,184,17.4%,5.1%
+"LDL <e2><89><a4>70, Statin",Diabetes,351,27.2%,4.8%
+"LDL <e2><89><a4>70, No Statin",Normal,415,9.3%,2.1%
+"LDL <e2><89><a4>70, No Statin",Prediabetes,244,20.5%,3.4%
+"LDL <e2><89><a4>70, No Statin",Diabetes,103,30.0%,7.3%
+"LDL 70-130, Statin",Normal,185,14.2%,3.9%
+"LDL 70-130, Statin",Prediabetes,757,17.7%,2.2%
+"LDL 70-130, Statin",Diabetes,708,26.2%,2.9%
+"LDL 70-130, No Statin",Normal,2816,12.4%,1.0%
+"LDL 70-130, No Statin",Prediabetes,2596,21.5%,1.2%
+"LDL 70-130, No Statin",Diabetes,724,33.6%,2.0%
+"LDL >130, Statin",Normal,35,20.4%,9.4%
+"LDL >130, Statin",Prediabetes,147,27.7%,6.0%
+"LDL >130, Statin",Diabetes,113,29.4%,6.7%
+"LDL >130, No Statin",Normal,1219,13.5%,1.4%
+"LDL >130, No Statin",Prediabetes,1817,22.4%,1.7%
+"LDL >130, No Statin",Diabetes,435,31.9%,3.5%

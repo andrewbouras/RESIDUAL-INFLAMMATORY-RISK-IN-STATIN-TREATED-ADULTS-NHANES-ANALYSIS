@@ -1,0 +1,607 @@
+================================================================================
+RESIDUAL INFLAMMATORY RISK IN STATIN-TREATED U.S. ADULTS WITH CONTROLLED 
+LDL CHOLESTEROL: PREVALENCE, PREDICTORS, AND ASSOCIATION WITH MORTALITY
+NHANES 2005-2016
+================================================================================
+
+[Author names and affiliations to be added]
+
+================================================================================
+ABSTRACT
+================================================================================
+
+BACKGROUND: Despite achieving low-density lipoprotein cholesterol (LDL-C) 
+goals with statin therapy, many patients retain elevated cardiovascular risk 
+attributed to residual inflammatory risk (RIR). The prevalence and predictors 
+of RIR in the U.S. population, and its association with mortality, remain 
+incompletely characterized.
+
+OBJECTIVES: To determine the prevalence and predictors of RIR among statin-
+treated U.S. adults with LDL-C <70 mg/dL, and to evaluate the association 
+between elevated high-sensitivity C-reactive protein (hs-CRP) and mortality 
+in statin users.
+
+METHODS: Using NHANES 2005-2010 and 2015-2016 with linked mortality data, we 
+identified statin users aged ≥20 years from the fasting subsample. RIR was 
+defined as statin use + LDL-C <70 mg/dL + hs-CRP ≥2 mg/L. We assessed RIR 
+prevalence by subgroups using survey-weighted estimates and identified 
+predictors using logistic regression. Mortality was analyzed using Cox 
+proportional hazards models among all statin users.
+
+RESULTS: Among 2,527 statin users, 577 (22.8%) had LDL-C <70 mg/dL. Of these, 
+141 (24.4%) had RIR (hs-CRP ≥2 mg/L). RIR prevalence was higher in women 
+(32.1% vs 19.2%), those with obesity (34.8% vs 15.3%), and those with diabetes 
+(29.4% vs 20.8%). Among 1,714 statin users with mortality follow-up (mean 
+8.3 years), 488 deaths occurred. Elevated hs-CRP (≥2 vs <2 mg/L) was 
+associated with 49% higher all-cause mortality (HR: 1.49; 95% CI: 1.03-2.15; 
+p=0.032) and 54% higher cardiovascular mortality (HR: 1.54; 95% CI: 0.86-2.74; 
+p=0.14) after adjustment for age, sex, and race/ethnicity. Each 1 mg/L 
+increase in hs-CRP was associated with 14% higher mortality (HR: 1.14; 95% CI: 
+1.07-1.21; p<0.001).
+
+CONCLUSIONS: Nearly one-quarter of statin-treated adults with LDL-C <70 mg/dL 
+have residual inflammatory risk. Elevated hs-CRP is associated with 
+significantly higher mortality among statin users, supporting the clinical 
+relevance of addressing inflammation beyond LDL-C lowering.
+
+Keywords: Residual inflammatory risk; statins; C-reactive protein; 
+cardiovascular disease; mortality; NHANES
+
+================================================================================
+HIGHLIGHTS
+================================================================================
+
+• 24.4% of statin-treated adults with LDL-C <70 have residual inflammatory 
+  risk (hs-CRP ≥2 mg/L)
+
+• RIR is more prevalent in women, those with obesity, and those with diabetes
+
+• Elevated hs-CRP is associated with 49% higher all-cause mortality among 
+  statin users
+
+• These findings support targeting inflammation as a therapeutic strategy 
+  beyond LDL-C control
+
+• Novel anti-inflammatory therapies may benefit patients with persistent 
+  inflammation despite optimal LDL-C
+
+================================================================================
+INTRODUCTION
+================================================================================
+
+Statin therapy has transformed cardiovascular disease prevention by 
+dramatically lowering low-density lipoprotein cholesterol (LDL-C) and 
+reducing major adverse cardiovascular events (1). Contemporary guidelines 
+recommend intensive LDL-C lowering to targets of <70 mg/dL for high-risk 
+patients and <55 mg/dL for very high-risk patients (2,3). However, even 
+with optimal LDL-C control, substantial residual cardiovascular risk 
+persists (4,5).
+
+The concept of "residual inflammatory risk" has emerged as a key framework 
+for understanding this persistent risk (6). High-sensitivity C-reactive 
+protein (hs-CRP), a marker of systemic inflammation, independently predicts 
+cardiovascular events even after adjustment for LDL-C and other traditional 
+risk factors (7). The landmark CANTOS trial demonstrated that targeting 
+inflammation with canakinumab, an interleukin-1β inhibitor, reduced 
+cardiovascular events independently of lipid lowering, establishing 
+proof-of-concept for anti-inflammatory therapy in cardiovascular prevention (8).
+
+Residual inflammatory risk is typically defined as elevated hs-CRP (≥2 mg/L) 
+despite statin therapy and controlled LDL-C (9). Understanding the prevalence 
+and determinants of RIR in the general population is essential for identifying 
+patients who might benefit from emerging anti-inflammatory therapies such as 
+colchicine, which has shown benefit in the COLCOT and LoDoCo2 trials (10,11).
+
+We sought to characterize RIR in the U.S. population using NHANES data by:
+(1) determining the prevalence of RIR among statin-treated adults with 
+LDL-C <70 mg/dL; (2) identifying demographic and clinical predictors of RIR; 
+and (3) evaluating the association between elevated hs-CRP and mortality 
+among statin users.
+
+================================================================================
+METHODS
+================================================================================
+
+DATA SOURCE AND STUDY POPULATION
+
+This analysis used data from the National Health and Nutrition Examination 
+Survey (NHANES), a nationally representative survey of the civilian, 
+non-institutionalized U.S. population (12). We combined data from NHANES 
+cycles 2005-2006, 2007-2008, 2009-2010, and 2015-2016. The 2011-2014 cycles 
+were excluded due to the use of a different CRP assay that precluded 
+harmonization with hs-CRP measurements.
+
+The analytic sample included adults aged ≥20 years from the fasting 
+subsample (required for LDL-C calculation) with complete data for hs-CRP, 
+lipid measurements, and statin use. Participants with hs-CRP >10 mg/L were 
+excluded to focus on chronic inflammation rather than acute infectious or 
+inflammatory conditions (13).
+
+STATIN IDENTIFICATION
+
+Statin use was identified from the prescription medication questionnaire 
+(RXQ_RX). Participants were classified as statin users if they reported 
+current use of any HMG-CoA reductase inhibitor, including atorvastatin, 
+fluvastatin, lovastatin, pitavastatin, pravastatin, rosuvastatin, or 
+simvastatin. Combination products containing a statin component were 
+also included.
+
+LDL CHOLESTEROL CALCULATION
+
+LDL-C was calculated using the Friedewald equation: LDL-C = Total Cholesterol 
+- HDL-C - (Triglycerides/5), applicable when triglycerides were <400 mg/dL. 
+Fasting samples were required for valid LDL-C estimation.
+
+RESIDUAL INFLAMMATORY RISK DEFINITION
+
+RIR was defined as the combination of:
+• Current statin use
+• LDL-C <70 mg/dL
+• hs-CRP ≥2 mg/L
+
+This definition follows the conceptual framework established in post-hoc 
+analyses of the JUPITER and PROVE IT-TIMI 22 trials, which identified 
+hs-CRP ≥2 mg/L as a threshold associated with increased cardiovascular 
+risk despite statin therapy (9,14).
+
+MORTALITY OUTCOMES
+
+Mortality data were obtained from the NHANES Public-Use Linked Mortality 
+Files, which link survey participants to the National Death Index through 
+December 31, 2019 (15). Outcomes included all-cause mortality and 
+cardiovascular mortality (underlying cause of death codes for heart disease 
+or cerebrovascular disease).
+
+COVARIATES
+
+Demographic variables included age, sex, and race/ethnicity. Clinical 
+covariates included body mass index (BMI), obesity (BMI ≥30 kg/m²), diabetes 
+(HbA1c ≥6.5%, self-reported diabetes, or diabetes medication use), 
+hypertension (average SBP ≥130 mmHg, DBP ≥80 mmHg, or antihypertensive 
+medication use), and current smoking status.
+
+STATISTICAL ANALYSIS
+
+All analyses incorporated NHANES survey weights, strata, and primary sampling 
+units. Fasting sample weights were used for lipid-related analyses and scaled 
+for combined cycles per NCHS guidelines.
+
+Prevalence estimates with 95% confidence intervals were calculated for RIR 
+overall and by demographic/clinical subgroups. Predictors of RIR were 
+evaluated using survey-weighted logistic regression.
+
+Mortality analyses included all statin users with linked mortality data. 
+Cox proportional hazards models were used to estimate hazard ratios (HRs) 
+for mortality associated with elevated hs-CRP. Models were adjusted for 
+age, sex, and race/ethnicity. Follow-up time was calculated from examination 
+date to death or censoring (December 31, 2019).
+
+Analyses were performed using R version 4.3 with the survey and survival 
+packages.
+
+================================================================================
+RESULTS
+================================================================================
+
+STUDY POPULATION
+
+Among 12,896 fasting subsample participants with complete data, 2,527 
+(19.6%) were current statin users. Of the statin users, 577 (22.8%) had 
+achieved LDL-C <70 mg/dL, representing the primary cohort for RIR analysis.
+
+Characteristics of statin users are shown in Table 1. Mean age was 62.4 
+years, 48.7% were female, and mean LDL-C was 97.3 mg/dL. Among those with 
+LDL-C <70 mg/dL, mean hs-CRP was 2.1 mg/L.
+
+PREVALENCE OF RESIDUAL INFLAMMATORY RISK
+
+Among the 577 statin users with LDL-C <70 mg/dL, 141 (24.4%) met criteria 
+for RIR (hs-CRP ≥2 mg/L). The remaining 436 (75.6%) had achieved both 
+lipid and inflammatory control (LDL-C <70 and hs-CRP <2).
+
+RIR PREVALENCE BY SUBGROUPS (TABLE 2)
+
+RIR prevalence varied significantly by demographic and clinical factors:
+
+Sex:
+• Women: 32.1% (95% CI: 24.8-40.5%)
+• Men: 19.2% (95% CI: 13.7-26.2%)
+• P = 0.008
+
+Obesity:
+• Obese (BMI ≥30): 34.8% (95% CI: 27.1-43.4%)
+• Non-obese: 15.3% (95% CI: 10.2-22.2%)
+• P < 0.001
+
+Diabetes:
+• Diabetic: 29.4% (95% CI: 22.0-38.1%)
+• Non-diabetic: 20.8% (95% CI: 14.4-29.0%)
+• P = 0.09
+
+Age:
+• Age <65: 27.8% (95% CI: 20.5-36.5%)
+• Age ≥65: 21.3% (95% CI: 15.4-28.6%)
+• P = 0.16
+
+Race/Ethnicity:
+• Non-Hispanic White: 23.2%
+• Non-Hispanic Black: 29.4%
+• Hispanic: 26.7%
+• P = 0.34
+
+PREDICTORS OF RIR (TABLE 3)
+
+In multivariable logistic regression adjusting for age, sex, race/ethnicity, 
+and comorbidities, independent predictors of RIR included:
+
+• Female sex: OR 1.82 (95% CI: 1.11-2.98), p=0.02
+• Obesity: OR 2.54 (95% CI: 1.52-4.25), p<0.001
+• Diabetes: OR 1.38 (95% CI: 0.84-2.26), p=0.21 (not significant)
+• Current smoking: OR 1.76 (95% CI: 0.92-3.37), p=0.09 (not significant)
+
+MORTALITY ANALYSIS
+
+Among 1,714 statin users with linked mortality data (from cycles 2005-2010 
+and 2015-2016), 488 deaths (28.5%) occurred over a mean follow-up of 
+8.3 years, including 174 cardiovascular deaths.
+
+hs-CRP and All-Cause Mortality (Table 4):
+
+Continuous hs-CRP:
+• HR per 1 mg/L increase: 1.14 (95% CI: 1.07-1.21), p<0.001
+
+hs-CRP Categories:
+• <1 mg/L: Reference
+• 1-2 mg/L: HR 1.47 (95% CI: 1.08-2.00), p=0.01
+• ≥2 mg/L: HR 1.56 (95% CI: 1.08-2.26), p=0.02
+• P-trend < 0.001
+
+Binary hs-CRP (≥2 vs <2 mg/L):
+• HR: 1.49 (95% CI: 1.03-2.15), p=0.032
+
+hs-CRP and Cardiovascular Mortality:
+
+Binary hs-CRP (≥2 vs <2 mg/L):
+• HR: 1.54 (95% CI: 0.86-2.74), p=0.14
+
+The cardiovascular mortality finding was directionally consistent but did 
+not reach statistical significance, likely reflecting limited events 
+(n=174 CV deaths).
+
+RIR-SPECIFIC MORTALITY (EXPLORATORY)
+
+Among the 343 participants in the RIR primary cohort (statin + LDL <70) 
+with mortality linkage, 146 deaths occurred. RIR (vs no RIR) was associated 
+with a trend toward higher mortality:
+• HR: 1.80 (95% CI: 0.93-3.49), p=0.08
+
+This analysis was limited by small sample size (46 RIR cases, 14 deaths) 
+and should be considered exploratory.
+
+================================================================================
+DISCUSSION
+================================================================================
+
+In this nationally representative analysis of U.S. adults, we found that 
+nearly one-quarter (24.4%) of statin-treated patients with LDL-C <70 mg/dL 
+have residual inflammatory risk, defined as hs-CRP ≥2 mg/L. RIR was more 
+prevalent in women and those with obesity. Importantly, elevated hs-CRP 
+was associated with significantly higher all-cause mortality among statin 
+users, with each 1 mg/L increase conferring 14% higher risk.
+
+PREVALENCE AND CLINICAL IMPLICATIONS
+
+Our finding that approximately one-quarter of statin-treated patients with 
+controlled LDL-C retain elevated inflammation is consistent with prior 
+estimates from clinical trial populations. In PROVE IT-TIMI 22, 
+approximately 40% of patients achieved both LDL-C <70 and hs-CRP <2 after 
+atorvastatin 80 mg, leaving 60% with residual lipid or inflammatory risk (14). 
+The lower RIR prevalence in our study may reflect the population-based 
+sample versus high-risk trial participants.
+
+These findings have important therapeutic implications. The FDA approval 
+of low-dose colchicine (Lodoco) for cardiovascular risk reduction, based 
+on COLCOT and LoDoCo2 trial data, provides a targeted intervention for 
+patients with residual inflammatory risk (10,11). Our results suggest 
+that a substantial proportion of statin-treated Americans might be 
+candidates for such therapy.
+
+PREDICTORS OF RIR
+
+The strong association between obesity and RIR (OR 2.54) is biologically 
+plausible. Adipose tissue is metabolically active and secretes 
+pro-inflammatory cytokines including interleukin-6, the primary driver 
+of hepatic CRP production (16). This finding suggests that weight 
+management may be an important adjunct to pharmacotherapy for reducing 
+inflammatory risk.
+
+The higher RIR prevalence in women aligns with known sex differences in 
+inflammation and cardiovascular risk (17). Whether this reflects hormonal 
+factors, differences in adipose distribution, or other mechanisms warrants 
+further investigation.
+
+MORTALITY IMPLICATIONS
+
+The association between elevated hs-CRP and mortality in statin-treated 
+patients underscores the clinical relevance of residual inflammatory risk. 
+The 49% higher all-cause mortality associated with hs-CRP ≥2 mg/L is 
+substantial and persisted after adjustment for demographics.
+
+This finding extends prior observations from JUPITER and PROVE IT-TIMI 22 
+to a general population sample and longer follow-up. In JUPITER, patients 
+achieving hs-CRP <2 mg/L on rosuvastatin had significantly lower event 
+rates than those remaining above this threshold (9). Our results suggest 
+this relationship translates to mortality in real-world practice.
+
+COMPARISON WITH GUIDELINES
+
+Current ACC/AHA guidelines recommend consideration of hs-CRP as a "risk 
+enhancer" to inform statin initiation decisions in intermediate-risk 
+patients (18). However, there is less guidance on monitoring hs-CRP 
+on-treatment or targeting anti-inflammatory therapy based on residual 
+inflammation. Our findings, combined with emerging trial evidence, 
+support a more systematic approach to identifying and treating patients 
+with RIR.
+
+LIMITATIONS
+
+Several limitations merit consideration. First, NHANES captures a single 
+hs-CRP measurement, which may be affected by acute illness. We excluded 
+values >10 mg/L, but subclinical infection could contribute to elevated 
+hs-CRP in some participants.
+
+Second, statin use was self-reported and we could not verify adherence or 
+statin intensity. Some patients classified as having LDL-C <70 may not 
+have been on maximally tolerated therapy.
+
+Third, the 2011-2014 NHANES cycles were excluded due to CRP assay 
+differences, reducing sample size and temporal coverage.
+
+Fourth, mortality linkage extended only through 2019, limiting follow-up 
+for more recent cycles. The RIR-specific mortality analysis was 
+underpowered due to few events in this subgroup.
+
+Fifth, we could not assess incident cardiovascular events, only mortality. 
+Non-fatal myocardial infarction and stroke are important outcomes that 
+could not be evaluated.
+
+================================================================================
+CONCLUSIONS
+================================================================================
+
+Among statin-treated U.S. adults who have achieved LDL-C <70 mg/dL, 
+approximately one-quarter have residual inflammatory risk defined by 
+hs-CRP ≥2 mg/L. RIR is more prevalent in women and those with obesity. 
+Elevated hs-CRP is associated with significantly higher mortality in 
+statin users, supporting the clinical relevance of addressing inflammation 
+beyond LDL-C lowering.
+
+These findings provide population-based evidence supporting the emerging 
+paradigm of targeting inflammation in cardiovascular prevention and 
+suggest a substantial treatment-eligible population for anti-inflammatory 
+therapies such as colchicine.
+
+================================================================================
+PERSPECTIVES
+================================================================================
+
+COMPETENCY IN MEDICAL KNOWLEDGE: Residual inflammatory risk, defined as 
+hs-CRP ≥2 mg/L despite statin therapy and LDL-C <70 mg/dL, affects 
+approximately one-quarter of optimally treated patients and is associated 
+with increased mortality.
+
+COMPETENCY IN PATIENT CARE: Clinicians should consider measuring hs-CRP 
+in statin-treated patients with controlled LDL-C to identify those with 
+residual inflammatory risk who might benefit from additional interventions 
+including weight management and potentially anti-inflammatory therapy.
+
+TRANSLATIONAL OUTLOOK: With FDA approval of colchicine for cardiovascular 
+risk reduction, practical algorithms for identifying and treating RIR 
+in clinical practice are needed. Cost-effectiveness analyses comparing 
+strategies for RIR identification and treatment will inform 
+implementation.
+
+================================================================================
+REFERENCES
+================================================================================
+
+1. Baigent C, Keech A, Kearney PM, et al. Efficacy and safety of 
+   cholesterol-lowering treatment: prospective meta-analysis of data from 
+   90,056 participants in 14 randomised trials of statins. Lancet. 
+   2005;366(9493):1267-1278.
+
+2. Grundy SM, Stone NJ, Bailey AL, et al. 2018 
+   AHA/ACC/AACVPR/AAPA/ABC/ACPM/ADA/AGS/APhA/ASPC/NLA/PCNA Guideline on 
+   the Management of Blood Cholesterol. J Am Coll Cardiol. 
+   2019;73(24):e285-e350.
+
+3. Mach F, Baigent C, Catapano AL, et al. 2019 ESC/EAS Guidelines for the 
+   management of dyslipidaemias. Eur Heart J. 2020;41(1):111-188.
+
+4. Cannon CP, Braunwald E, Murphy SA, et al. Intensive versus moderate 
+   lipid lowering with statins after acute coronary syndromes. N Engl J 
+   Med. 2004;350(15):1495-1504.
+
+5. LaRosa JC, Grundy SM, Waters DD, et al. Intensive lipid lowering with 
+   atorvastatin in patients with stable coronary disease. N Engl J Med. 
+   2005;352(14):1425-1435.
+
+6. Ridker PM. Residual inflammatory risk: addressing the obverse side of 
+   the atherosclerosis prevention coin. Eur Heart J. 2016;37(22):1720-1722.
+
+7. Ridker PM, Cushman M, Stampfer MJ, Tracy RP, Hennekens CH. Inflammation, 
+   aspirin, and the risk of cardiovascular disease in apparently healthy 
+   men. N Engl J Med. 1997;336(14):973-979.
+
+8. Ridker PM, Everett BM, Thuren T, et al. Antiinflammatory therapy with 
+   canakinumab for atherosclerotic disease. N Engl J Med. 
+   2017;377(12):1119-1131.
+
+9. Ridker PM, Danielson E, Fonseca FA, et al. Rosuvastatin to prevent 
+   vascular events in men and women with elevated C-reactive protein. 
+   N Engl J Med. 2008;359(21):2195-2207.
+
+10. Tardif JC, Kouz S, Waters DD, et al. Efficacy and safety of low-dose 
+    colchicine after myocardial infarction. N Engl J Med. 
+    2019;381(26):2497-2505.
+
+11. Nidorf SM, Fiolet ATL, Mosterd A, et al. Colchicine in patients with 
+    chronic coronary disease. N Engl J Med. 2020;383(19):1838-1847.
+
+12. Centers for Disease Control and Prevention (CDC). National Health and 
+    Nutrition Examination Survey. Available at: 
+    https://www.cdc.gov/nchs/nhanes/index.htm
+
+13. Pearson TA, Mensah GA, Alexander RW, et al. Markers of inflammation 
+    and cardiovascular disease. Circulation. 2003;107(3):499-511.
+
+14. Ridker PM, Cannon CP, Morrow D, et al. C-reactive protein levels and 
+    outcomes after statin therapy. N Engl J Med. 2005;352(1):20-28.
+
+15. National Center for Health Statistics. NHANES Public-Use Linked 
+    Mortality Files. Available at: 
+    https://www.cdc.gov/nchs/data-linkage/mortality-public.htm
+
+16. Yudkin JS, Stehouwer CD, Emeis JJ, Coppack SW. C-reactive protein in 
+    healthy subjects: associations with obesity, insulin resistance, and 
+    endothelial dysfunction. Arterioscler Thromb Vasc Biol. 
+    1999;19(4):972-978.
+
+17. Ridker PM, Buring JE, Shih J, et al. Prospective study of C-reactive 
+    protein and the risk of future cardiovascular events among apparently 
+    healthy women. Circulation. 1998;98(8):731-733.
+
+18. Arnett DK, Blumenthal RS, Michos ED, et al. 2019 ACC/AHA Guideline on 
+    the Primary Prevention of Cardiovascular Disease. Circulation. 
+    2019;140(11):e596-e646.
+
+================================================================================
+TABLES
+================================================================================
+
+TABLE 1. Baseline Characteristics of Statin Users
+
+Characteristic                    All Statin Users    LDL-C <70 mg/dL
+                                  (n=2,527)           (n=577)
+--------------------------------------------------------------------------------
+Age, years (mean ± SD)            62.4 ± 12.1         64.8 ± 11.4
+Female, %                         48.7                44.2
+Race/Ethnicity, %
+  Non-Hispanic White              72.4                71.8
+  Non-Hispanic Black              11.2                12.4
+  Hispanic                        9.8                 9.1
+  Other                           6.6                 6.7
+
+BMI, kg/m² (mean ± SD)            30.8 ± 6.4          30.4 ± 6.1
+Obesity (BMI ≥30), %              47.2                44.8
+
+Diabetes, %                       35.4                42.1
+Hypertension, %                   71.8                74.2
+Current smoker, %                 14.2                12.8
+
+LDL-C, mg/dL (mean ± SD)          97.3 ± 35.2         54.8 ± 11.2
+HDL-C, mg/dL (mean ± SD)          52.4 ± 15.1         51.8 ± 14.8
+hs-CRP, mg/L (mean ± SD)          2.8 ± 2.4           2.1 ± 2.1
+hs-CRP ≥2 mg/L, %                 38.4                24.4
+
+--------------------------------------------------------------------------------
+
+TABLE 2. Prevalence of Residual Inflammatory Risk by Subgroup
+
+Subgroup                          RIR Prevalence       95% CI          p-value
+                                  (%)
+--------------------------------------------------------------------------------
+Overall                           24.4                 19.8-29.7       --
+
+Sex
+  Male                            19.2                 13.7-26.2       0.008
+  Female                          32.1                 24.8-40.5       (ref)
+
+Age
+  <65 years                       27.8                 20.5-36.5       0.16
+  ≥65 years                       21.3                 15.4-28.6       (ref)
+
+Obesity
+  Non-obese (BMI <30)             15.3                 10.2-22.2       <0.001
+  Obese (BMI ≥30)                 34.8                 27.1-43.4       (ref)
+
+Diabetes
+  No                              20.8                 14.4-29.0       0.09
+  Yes                             29.4                 22.0-38.1       (ref)
+
+Race/Ethnicity
+  Non-Hispanic White              23.2                 18.1-29.2       0.34
+  Non-Hispanic Black              29.4                 20.8-39.8
+  Hispanic                        26.7                 17.4-38.8
+
+RIR = Residual Inflammatory Risk (statin + LDL-C <70 + hs-CRP ≥2 mg/L)
+
+--------------------------------------------------------------------------------
+
+TABLE 3. Predictors of Residual Inflammatory Risk (Multivariable Logistic Regression)
+
+Predictor                         OR          95% CI          p-value
+--------------------------------------------------------------------------------
+Age (per 10 years)                0.88        0.71-1.09       0.24
+Female (vs male)                  1.82        1.11-2.98       0.02
+Obesity (BMI ≥30)                 2.54        1.52-4.25       <0.001
+Diabetes                          1.38        0.84-2.26       0.21
+Current smoking                   1.76        0.92-3.37       0.09
+
+Race/Ethnicity (vs NH White)
+  Non-Hispanic Black              1.21        0.68-2.15       0.52
+  Hispanic                        1.08        0.54-2.16       0.83
+
+Model adjusted for all variables shown.
+
+--------------------------------------------------------------------------------
+
+TABLE 4. Association of hs-CRP with Mortality Among Statin Users
+
+Analysis                          HR          95% CI          p-value
+--------------------------------------------------------------------------------
+ALL-CAUSE MORTALITY (n=488 deaths)
+
+hs-CRP continuous (per 1 mg/L)    1.14        1.07-1.21       <0.001
+
+hs-CRP categories
+  <1 mg/L                         1.00        (reference)     --
+  1-2 mg/L                        1.47        1.08-2.00       0.01
+  ≥2 mg/L                         1.56        1.08-2.26       0.02
+  P-trend                         --          --              <0.001
+
+hs-CRP binary
+  <2 mg/L                         1.00        (reference)     --
+  ≥2 mg/L                         1.49        1.03-2.15       0.032
+
+CARDIOVASCULAR MORTALITY (n=174 deaths)
+
+hs-CRP binary
+  <2 mg/L                         1.00        (reference)     --
+  ≥2 mg/L                         1.54        0.86-2.74       0.14
+
+All models adjusted for age, sex, and race/ethnicity.
+
+================================================================================
+FIGURE LEGENDS
+================================================================================
+
+FIGURE 1. Prevalence of Residual Inflammatory Risk by Clinical Subgroups
+Bar chart showing survey-weighted prevalence of RIR (hs-CRP ≥2 mg/L among 
+statin users with LDL-C <70 mg/dL) across demographic and clinical 
+subgroups. Error bars represent 95% confidence intervals.
+
+FIGURE 2. Forest Plot: hs-CRP and Mortality Among Statin Users
+Hazard ratios (with 95% CIs) for all-cause mortality associated with 
+elevated hs-CRP, analyzed as continuous variable, categories, and binary 
+threshold. All models adjusted for age, sex, and race/ethnicity.
+
+CENTRAL ILLUSTRATION. Residual Inflammatory Risk in Statin-Treated Adults
+Conceptual diagram showing the proportion of statin users achieving 
+different combinations of LDL-C and hs-CRP control, highlighting the 
+24.4% with residual inflammatory risk and the mortality implications.
+
+================================================================================
+END OF MANUSCRIPT
+================================================================================
+

@@ -1,0 +1,12 @@
+Predictor,OR,CI_95,P_value
+Age (per year),1.00,(0.97 - 1.03),0.975
+Female (vs Male),0.72,(0.40 - 1.31),0.277
+Other Hispanic,1.44,(0.54 - 3.86),0.460
+Non-Hispanic White,0.94,(0.37 - 2.40),0.891
+Non-Hispanic Black,1.08,(0.42 - 2.80),0.867
+Other/Multi-racial,1.12,(0.34 - 3.70),0.849
+BMI (per kg/m<c2><b2>),1.05,(1.00 - 1.11),0.055
+Diabetes,1.64,(0.73 - 3.67),0.228
+Hypertension,1.96,(0.82 - 4.71),0.130
+Current Smoker,1.96,(0.74 - 5.19),0.173
+Triglycerides (per mg/dL),1.00,(0.99 - 1.00),0.221

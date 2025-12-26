@@ -1,0 +1,13 @@
+Group,Sex,N,Prevalence,SE
+"LDL <e2><89><a4>70, Statin",Male,346,23.5%,3.4%
+"LDL <e2><89><a4>70, Statin",Female,236,20.9%,4.4%
+"LDL <e2><89><a4>70, No Statin",Male,323,9.7%,2.0%
+"LDL <e2><89><a4>70, No Statin",Female,439,18.3%,2.7%
+"LDL 70-130, Statin",Male,875,18.0%,2.1%
+"LDL 70-130, Statin",Female,775,22.5%,2.6%
+"LDL 70-130, No Statin",Male,2850,14.9%,0.9%
+"LDL 70-130, No Statin",Female,3286,20.2%,1.1%
+"LDL >130, Statin",Male,121,20.4%,4.9%
+"LDL >130, Statin",Female,174,32.0%,5.9%
+"LDL >130, No Statin",Male,1743,17.5%,1.5%
+"LDL >130, No Statin",Female,1728,22.0%,1.7%
